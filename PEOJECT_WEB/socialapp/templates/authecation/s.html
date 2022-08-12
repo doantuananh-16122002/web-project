@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/ignin.css' %}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <H1>CÀI ĐẶT CHO {{user.username}}</H1>
+    
+            <div>
+                <label for="about">Profile</label>
+                <img height="100" width="100" src="{{user_profile.profileimg.url}}" alt="" />
+                <input type="file" name="image" value="">
+            </div>
+            <div>
+                <label for="about">BIO</label>
+                <textarea name="bio" id="about" rows="3" placeholder=""></textarea>
+            </div>
+            <div>
+                <label for="about">Location</label>
+                <input type="text" name="location" placeholder="">
+            </div>
+            <button type="submit">save</button>
+        </form>
+       
+    </div>
+
+</body>
+</html>

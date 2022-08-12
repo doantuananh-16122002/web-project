@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile page</title>
+    <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">
+</head>
+<body>
+    <div id = "profile">
+        <!-- Pròfile -->
+        <header  class="header">
+           <img src="{% static '/img/background-chu-de-may-trang-dep_094515971.jpg' %}" alt="">
+        </header>
+        <main>
+            <div class="content__left">
+                <div class="user__avartar">
+                    <!-- add img -->
+                    <img class="image" src="{{user_profile.profileimg.url}}" alt="">
+                </div>
+                <div class="user__name">
+                    <p>@{{user_profile.user.username}}</p>
+                </div>
+                <div class="user__position">
+
+                </div>
+                <div class="user__analylist">
+                    <div class="user__item">
+                        <!-- Followers -->
+                        <p></p>
+                        <p>Followers</p>
+                    </div>
+                    <div class="user__item">
+                        <!-- Followings -->
+                        <p></p>
+                        <p>Followings</p>
+                    </div>
+                    <div class="user__item">
+                    {% if user_post_len == 0 %}
+                        <p>Không có Bài Viết</p>
+                    {% elif user_post_len == 1 %}
+                        <p>{{user_post_len}} Bài Viết</p>
+                    {% else %}
+                        <p>{{user_post_len}} Bài Viết</p>
+                    {% endif %}
+                        
+                    </div>
+                </div>
+                <div class="user__desc">
+                    <p>{{user_profile.user.bio}}
+                    </p>
+                </div>
+
+                <button class="btn__connect">Follow</button>
+
+            </div>
+            
+        
+        
+        
+            <!-- Content -->
+            
+            
+
+            <!-- Content Body -->
+            <!-- add img -->
+            <div class="content__bottom">
+                <div class="header_img">
+
+                </div>
+               <div class="img">
+                
+                    <ul>
+                        {% for post in user_posts %}
+                        <li>
+                            <a href="/media/{{post.images}}">
+                                <img src="/media/{{post.images}}" alt="">
+                            </a>
+                        </li>
+                        {% endfor  %}
+                    </ul>
+                    
+               </div>
+           
+            </div>
+        </main>
+        
+    </div>
+</body>
+</html>

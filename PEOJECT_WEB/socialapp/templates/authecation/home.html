@@ -1,0 +1,258 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'assets/css/homes.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <!--------------------------------  Start header ------------------------------------>
+            <div class="nav-left">
+                <img src="images/logoz.jpg" class="logo">
+                <ul>
+                    <li><img src="{% static  '/img/notification.png' %}  "></li>
+                    <li><img src="{% static 'img/inbox.png' %}"></li>
+                    <li><img src="{% static 'img/video.png' %}"></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                        <img src="{% static '/img/search.png' %}">
+                    <input type="text" placeholder="Seacrch">
+                </div>
+                <div class="nav-user-icon online " >
+                     <img src="{{user_profile.profileimg.url}}">
+                </div>
+                
+            </div>
+            <!------------------------------ Settings-menu ----------------------------------->
+            
+            <div class="settings-menu">
+                <div class="settings-menu-inner">
+                    <div class="user-profile">
+                        <img src="{{user_profile.profileimg.url}}">
+                        <div >
+                            <p>{{ user.username }} </p>
+                            <a href="/accounts/profile/{{user_profile.user}}"> See your profile</a>
+                        </div>
+                    </div>
+                    <!-- <hr>
+                    <div class="user-profile">
+                        <img src="{% static 'img/feedback.png' %}">
+                        <div>
+                            <p>Give Feedback</p>
+                            <a href="#">Help to improve the new design</a>
+                        </div>
+                    </div>
+                    <hr> -->
+                    <div class="settings-links">
+                        <img src="{% static 'img/setting.png ' %}" class="settings-icon">
+                        <a href="/accounts/settings">Settings<img src="{% static 'img/arrow.png' %}" width="10px"></a>
+                    </div>
+                    <!-- <div class="settings-links">
+                        <img src="{% static 'img/help.png' %}" class="settings-icon">
+                        <a href="#">Help & Support <img src="{% static 'img/arrow.png' %}" width="10px"></a>
+                    </div>
+                    <div class="settings-links">
+                        <img src="{% static 'img/display.png' %}" class="settings-icon">
+                        <a href="#">Display & Accessibility <img src="{% static 'img/arrow.png' %}" width="10px"></a>
+                    </div> -->
+                    <div class="settings-links">
+                        <img src="{% static 'img/logout.png' %}" class="settings-icon">
+                        <a href="logout">Logout <img src="{% static 'img/arrow.png' %}" width="10px"></a>
+                    </div>
+                </div>
+            </div>
+                <!-- <div class="user-profile">
+                    <img src="{% static '/img/feedback.png' %}">
+                    <div>
+                        <p>Give Feedback</p>
+                        <a href="#">Help to improve the new design</a>
+                    </div>
+                </div> -->
+            </div>
+        <!------------------------------- end header----------------------------------------- -->
+    </nav>
+    <div class="container">
+    <!-- ---------------------------------left-sidebar ----------------------------------------->
+        <!-- <div class="left-sidebar">
+            <div class="imp-links">
+                <a href="#"><img src="images/news.png"> Latest news</a>
+                <a href="#"><img src="images/friends.png"> Friends</a>
+                <a href="#"><img src="images/group.png"> Group</a>
+                <a href="#"><img src="images/marketplace.png"> marketplace</a> 
+                <a href="#"><img src="images/watch.png"> Watch</a>
+                <a href="#">See More</a>
+            </div>
+            <div class="shortcut-links">
+                <p>Your Shortcuts </p>
+                <a href="#"><img src="images/shortcut-1.png"> Web Developers</a>
+                <a href="#"><img src="images/shortcut-2.png"> Web Design course</a>
+                <a href="#"><img src="images/shortcut-3.png"> Full Stack Development</a>
+                <a href="#"><img src="images/shortcut-4.png"> Website Experts</a>
+            </div>
+        </div> -->
+    <!-------------------------------------end---left-sidebar ---------------------------->
+    <!--------------------------------------main-content --------------------------------->
+        <div class="main-content">
+          <!-- <div class="story-gallery">
+            <div class="story story1">
+                <img src="images/upload.png">
+                <p>Post Story</p>
+            </div>
+            <div class="story story2">
+                <img src="images/member-1.png ">
+                <p>Tống Nguyễn Nhật Vỹ</p>
+            </div>
+            <div class="story story3">
+                <img src="images/member-2.png">
+                <p>Nguyễn Hoài Phúc</p>
+            </div>
+            <div class="story story4">
+                <img src="images/member-3.png">
+                <p>Bùi Khánh Duy</p>
+            </div>
+            <div class="story story5">
+                <img src="images/member-4.png">
+                <p>Nguyễn Thanh Hân</p>
+            </div>
+          </div> -->
+          <div class="write-post-container">
+            <div class="write-post-container anh">
+                <div class="user-profile">
+                    <img src="{{user_profile.profileimg.url}}">
+                    <div>
+                        <p>@{{user.username}}</p>
+                        <!-- <small>Public <i class="fa-solid fa-caret-down"></i></small> -->
+                    </div>
+                </div>
+    
+                <div class="post-input-container">
+                    <form action="upload" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <textarea rows="3" placeholder="Bạn Đang Nghỉ Gì, {{user.username}} ?" name="caption"></textarea>
+                    <div class="add-post-links">
+                        <!-- <a href="#"> <img src="{% static '/img/live-video.png' %}"> Live Video</a> -->
+                        <a href="#">
+                            
+                                <input type="file" name="image_upload" id="file" class="inputfile"  />
+                                <label for="file"><img src="{% static '/img/photo.png' %}"> Photo/Video</label> 
+                            
+                        </a>
+                        <!-- <a href="#"> <img src="{% static '/img/feeling.png' %}"> Feeling/Activity</a> -->
+                        <button class="submit"> upload</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+                {% for post in posts reversed %}
+                <div class="post-container">
+                    <div class="post-row">
+                        <div class="user-profile">
+                            <!-- <img src="{{post.profileimg}}"> -->
+                            <div class="a">
+                                <p>@{{ post.user }} </p>
+                                <span >{{ post.created_at }}</span>
+                            </div>
+                        </div>
+                        <a href="#"><i class="fas fa-ellipsis-v" ></i></a>
+                    </div>
+                    
+                    <p class="post-text"> {{post.caption}}</p> 
+                        
+                            <img src="/media/{{ post.images }}" class="post-img">
+                      
+                        <div class="post-row">
+                            <div class="activity-icons">
+                                <div><i class="fa-solid fa-heart"></i></div>
+                                <div><i class="fa-solid fa-comment"></i></div>
+                                <div><i class="fa-solid fa-share"></i></div>
+                            </div>
+                            <div class="post-profile-icon">
+                                <img src="{% static '/img/avatar.jpg' %}"><i class="fa-solid fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                                <button type="button" class="load-more-btn">Load More</button>
+
+
+
+          </div>
+
+        
+        </div>
+
+    <!------------------------------------- right-sidebar -------------------------------->   
+        <!-- <div class="right-sidebar">
+            <div class="sidebar-title">
+                <h4>Events</h4>
+                <a href="#">See All</a>
+            </div>
+            <div class="event">
+                <div class="left-event">
+                    <h3>18</h3>
+                    <span>March</span>
+                </div>    
+                <div class="right-event">
+                    <h4>Sosical Media</h4>
+                    <p><i class="fa-solid fa-location-dot"></i>Dam Sen Park</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+            <div class="event">
+                <div class="left-event">
+                    <h3>22</h3>
+                    <span>June</span>
+                </div>
+                <div class="right-event">
+                    <h4>Moblie Marketing</h4>
+                    <p><i class="fa-solid fa-location-dot"></i>Dam Sen Park</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+            <div class="sidebar-title">
+                <h4>Advertisement</h4>
+                <a href="#">Close</a>
+            </div>
+             <img src="images/advertisement.png" class="sidebar-ads">  
+             <div class="sidebar-title">
+                <h4>Conversation</h4>
+                <a href="#">Hide chat</a>
+            </div> 
+            <div class="online-list">
+                <div class="online">
+                    <img src="images/member-1.png">
+                </div>
+                <p>Tống Nguyễn Nhật Vỹ</p>
+            </div>
+            <div class="online-list">
+                <div class="online">
+                    <img src="images/member-2.png">
+                </div>
+                <p>Nguyễn Hoài Phúc</p>
+            </div>
+            <div class="online-list">
+                <div class="online">
+                    <img src="images/member-3.png">
+                </div>
+                <p>Bùi Khánh Duy</p>
+            </div> -->
+
+
+
+        </div>
+    </div>
+<div class="footer">
+    <p>Copyright 2022-Easy Easy Tutorials Youtube Channel</p>
+</div>
+        <!--------------------------end right-sidebar ---------------------------------->
+
+<script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>
